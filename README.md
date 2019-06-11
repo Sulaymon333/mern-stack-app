@@ -11,11 +11,11 @@ This is a simple MERN app to make a CRUD operation
 Sulaymon Tajudeen
 
 ### Tech Stack 
-MongoDB
-Express
-React
-Node
-Bootstrap
+- MongoDB
+- Express
+- React
+- Node
+- Bootstrap
 
 ### License
 
