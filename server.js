@@ -25,7 +25,7 @@ app.use(express.json());
 app.use('/api/v1.0', studentRoute); // every other paths are now append to /api/v1.0/students
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.get('*', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'client/build/index.html'));
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
 app.listen(PORT, () => {
