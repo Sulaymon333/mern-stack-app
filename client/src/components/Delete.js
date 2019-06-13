@@ -8,7 +8,7 @@ class Delete extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         console.log(this.props);
-        const apiUrl = `http://localhost:9000/api/v1.0/students/${id}/delete`;
+        const apiUrl = `/api/v1.0/students/${id}/delete`;
         axios.get(apiUrl).then(res => {
             console.log(res);
             this.setState({ student: res.data });
