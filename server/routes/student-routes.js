@@ -41,7 +41,7 @@ studentRoute.post('/students', (req, res) => {
     req.body.createdAt = createdAt;
     const student = new Student(req.body);
     student
-        .save() // this is only a pending promise not yet resolved. We need the .then part to solve it and catch for error
+        .save() // this is only a pending promise not yet resolved. We need the .then part to resolve it and the .catch for error
         // .then(st=>res.send('A student has been added'))
         .then(st => res.json(st))
         .catch(error => console.log(error));
@@ -83,7 +83,7 @@ studentRoute.put('/students/:id', (req, res) => {
     const { name, country, age, bio } = req.body;
     Student.findOne({ _id }, (err, student) => {
         if (err) {
-            return res.status(400).send('Error');
+            return res.status(404).send('Error');
         }
         student.name = name;
         student.country = country;
