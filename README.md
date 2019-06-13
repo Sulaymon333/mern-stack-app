@@ -5,7 +5,7 @@ This is a simple MERN app to make a CRUD operation
 # <p align="center"><img src="/client/src/assets/images/demo.png"/></p>
 
 ### Live Demo
-[Demo](https://github.com/Sulaymon333/mern-stack-app.git)
+[Demo](https://mern-stack-app-v1.herokuapp.com/students)
 
 ### Author
 Sulaymon Tajudeen
