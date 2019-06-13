@@ -22,10 +22,12 @@ class StudentDetail extends Component {
         const { name, country, age, bio } = this.state.student;
         return (
             <div>
-                <h5 className="text-center">
-                    Welcome to <b>{name}</b> student page. Below is more information about the student
-                </h5>
-                <div className="text-center card">
+                <div className="jumbotron">
+                    <h5 className="text-center">
+                        <h3>{name}</h3>
+                    </h5>
+                </div>
+                <div className="text-center card p-4">
                     <p>
                         <b>Country:</b> {country}
                     </p>

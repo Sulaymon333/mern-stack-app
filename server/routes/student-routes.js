@@ -47,38 +47,8 @@ studentRoute.post('/students', (req, res) => {
         .catch(error => console.log(error));
 });
 
-// delete
-studentRoute.get('/students/:id/delete', (req, res) => {
-    const _id = req.params.id;
-    // console.log(id);
-    Student.deleteOne({ _id }, (err, student) => {
-        if (err) {
-            return res.status(404).send('A student was not found');
-        }
-        res.send('A student has been deleted');
-    });
-});
-
 // edit
 studentRoute.put('/students/:id', (req, res) => {
-    // const id = req.params.id;
-    // const { name, country, age, bio } = req.body;
-    // Student.findOne({ _id: id }, (err, student) => {
-    //     if (err) {
-    //         return res.status(404).send('Error');
-    //     }
-    //     student.name = name;
-    //     student.country = country;
-    //     student.age = age;
-    //     student.bio = bio;
-    //     student
-    //         .save()
-    //         .then(student => {
-    //             res.send('Saved');
-    //         })
-    //         .catch(error => console.log(error));
-    // });
-
     const _id = req.params.id;
     const { name, country, age, bio } = req.body;
     Student.findOne({ _id }, (err, student) => {
@@ -95,6 +65,18 @@ studentRoute.put('/students/:id', (req, res) => {
                 res.send('Saved');
             })
             .catch(error => console.log(error));
+    });
+});
+
+// delete
+studentRoute.delete('/students/:id', (req, res) => {
+    const _id = req.params.id;
+    // console.log(id);
+    Student.deleteOne({ _id }, (err, student) => {
+        if (err) {
+            return res.status(404).send('A student was not found');
+        }
+        res.send('A student has been deleted');
     });
 });
 

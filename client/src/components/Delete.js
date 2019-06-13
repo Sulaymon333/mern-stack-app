@@ -1,33 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-class Delete extends Component {
-    state = {
-        student: null
+const Delete = props => {
+    const deleteStudent = id => {
+        const url = `/api/v1.0/students/${id}`;
+        axios
+            .delete(url)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
+
+        props.history.push('/students');
     };
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        console.log(this.props);
-        const apiUrl = `/api/v1.0/students/${id}/delete`;
-        axios.get(apiUrl).then(res => {
-            console.log(res);
-            this.setState({ student: res.data });
-        });
-    }
-    render() {
-        const id = this.props.match.params.id;
-        return (
-            <div className="card">
-                <h1>Are you sure you want to delete the student</h1>
-                <button className="primary" onClick={() => this.props.history.push(`/students/${id}`)}>
+
+    console.log(props.match.params.id);
+    return (
+        <div className="card my-5">
+            <p className="text-center m-5">Are you sure you want to delete the student?</p>
+            <div className="row mb-3 justify-content-center">
+                <button className="btn btn-primary col-1 mx-4" onClick={() => props.history.push(`/students`)}>
                     No
                 </button>
-                <button className="danger" onClick={() => this.props.history.push('/students')}>
+                <button className="btn btn-danger col-1" onClick={() => deleteStudent(props.match.params.id)}>
                     Yes
                 </button>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Delete;

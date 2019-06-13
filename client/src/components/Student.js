@@ -22,7 +22,7 @@ const Student = props => {
                 <NavLink to={`/edit/${props.student._id}`} className="btn btn-primary  mx-2 my-1">
                     Edit
                 </NavLink>
-                <NavLink to={`/students/${props.student._id}/delete`} className="btn btn-danger  mx-2 my-1">
+                <NavLink to={`/students/delete/${props.student._id}`} className="btn btn-danger  mx-2 my-1">
                     Delete
                 </NavLink>
                 {/* <button onClick={() => deleteStudent(props.student._id)} className="btn btn-danger"> 

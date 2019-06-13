@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = props => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <NavLink className="navbar-brand" to="/">
                 MERN App
             </NavLink>

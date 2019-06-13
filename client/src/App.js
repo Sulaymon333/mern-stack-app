@@ -20,7 +20,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/add-student" component={AddStudent} />
                         <Route path="/edit/:id" component={EditStudent} />
-                        <Route path="/students/:id/delete" component={Delete} />
+                        <Route path="/students/delete/:id" component={Delete} />
                         <Route path="/students/:id" component={StudentDetail} />
                         <Route path="/students" component={StudentList} />
                         <Route path="/" component={LandingPage} />
