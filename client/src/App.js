@@ -15,7 +15,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="container">
-                    <h1 className="text-center my-2">MERN Stack App</h1>
+                    <h1 className="text-center my-3">MERN Stack App</h1>
                     <Navbar />
                     <Switch>
                         <Route path="/add-student" component={AddStudent} />
