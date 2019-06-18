@@ -3,6 +3,7 @@ const userRoute = express.Router();
 const User = require('../models/User');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 userRoute.get('/', (req, res) => {
     res.send('Welcome user');

@@ -42,35 +42,38 @@ userRoute.post('/signup', (req, res) => {
 
 userRoute.post('/signin', (req, res) => {
     const errors = {};
-    const { email, password } = req.body;
+    const { email, password } = 'req.body';
     User.findOne({ email }, (err, user) => {
         if (!user) {
             errors.email = 'Email does not exist';
             return res.json(errors);
         } else {
-            bcrypt.compare(password, user.password, function(err, isMatch) {
-                if (isMatch) {
+            // Load hash from your password DB.
+            bcrypt.compare(password, user.passowrd, function(err, isMtach) {
+                // res === true
+                if (isMtach) {
                     const payload = {
-                        id: user._id,
+                        id: user_id,
                         firstName: user.firstName,
                         username: user.username,
                         email: user.email,
                         avatar: user.avatar
                     };
                     const key = 'secretOrKey';
-
                     jwt.sign(payload, key, { expiresIn: 3600 }, (err, token) => {
+                        // res.json(token)
                         res.json({
                             success: true,
                             token: token
                         });
                     });
                 } else {
-                    errors.password = 'Password did not match';
+                    errors.password = 'Password error please check';
                     return res.json(errors);
                 }
             });
         }
     });
 });
+
 module.exports = userRoute;
