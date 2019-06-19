@@ -1,6 +1,12 @@
 const express = require('express');
 const studentRoute = express.Router();
 const Student = require('../models/Student');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+
+studentRoute.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.send('Home page');
+});
 
 // studentRoute.route('/').get((req, res) => {}); // same as below
 studentRoute.get('/', (req, res) => {
@@ -16,6 +22,23 @@ studentRoute.get('/students', (req, res) => {
         res.json(students);
     });
 });
+
+// protected
+// studentRoute.get('/students', verifyToken, (req, res) => {
+//     jwt.verify(req.token, 'secretOrKey', function(err, data) {
+//         if (err) {
+//             res.sendStatus(403);
+//         } else {
+//             console.log('A create use has been access... ', data);
+//             Student.find({}, (err, students) => {
+//                 if (err) {
+//                     return res.status(404).send('Students not found');
+//                 }
+//                 res.json(students);
+//             });
+//         }
+//     });
+// });
 
 // get each student by id
 studentRoute.get('/students/:id', (req, res) => {
@@ -80,4 +103,20 @@ studentRoute.delete('/students/:id', (req, res) => {
     });
 });
 
+function verifyToken(req, res, next) {
+    const bearerHeader = req.headers['Authorization'];
+    if (bearerHeader) {
+        //Split at the space
+        const bearer = bearerHeader.split(' ');
+        //Get token from an array
+        const bearerToken = bearer[1];
+        //set the token
+        console.log('bearerToken', bearerToken);
+        req.token = bearerToken;
+        //Next middleware
+        next();
+    } else {
+        return res.status(403).json({ message: 'Accessed denied' });
+    }
+}
 module.exports = studentRoute;

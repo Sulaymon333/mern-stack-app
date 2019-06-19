@@ -57,12 +57,11 @@ userRoute.post('/signin', (req, res) => {
                         email: user.email,
                         avatar: user.avatar
                     };
-                    const key = 'secretOrKey';
 
-                    jwt.sign(payload, key, { expiresIn: 3600 }, (err, token) => {
+                    jwt.sign(payload, process.env.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                         res.json({
                             success: true,
-                            token: token
+                            token: `Bearer ${token}`
                         });
                     });
                 } else {

@@ -9,6 +9,8 @@ import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import StudentDetail from './components/StudentDetail';
 import Delete from './components/Delete';
+import Signup from './components/auth/Signup';
+import Signin from './components/auth/Signin';
 
 class App extends Component {
     render() {
@@ -23,6 +25,8 @@ class App extends Component {
                         <Route path="/students/delete/:id" component={Delete} />
                         <Route path="/students/:id" component={StudentDetail} />
                         <Route path="/students" component={StudentList} />
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/signin" component={Signin} />
                         <Route path="/" component={LandingPage} />
                     </Switch>
                 </div>

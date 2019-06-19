@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
+const passport = require('passport');
 
 mongoose.connect(process.env.MONGODB_URI, err => {
     if (err) {
@@ -20,6 +21,8 @@ mongoose.connect(process.env.MONGODB_URI, err => {
 //     res.send('MERN Stack application');
 // });
 
+app.use(passport.initialize());
+require('./server/config/passport')(passport);
 app.use(cors());
 app.use(express.json());
 // app.use(studentRoute);

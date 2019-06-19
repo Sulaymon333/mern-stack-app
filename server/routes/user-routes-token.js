@@ -63,8 +63,8 @@ userRoute.post('/signin', (req, res) => {
                     jwt.sign(payload, key, { expiresIn: 3600 }, (err, token) => {
                         // res.json(token)
                         res.json({
-                            success: true,
-                            token: token
+                            success: true
+                            token: `Bearer: ${token}`
                         });
                     });
                 } else {
