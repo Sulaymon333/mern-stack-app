@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 class Signin extends Component {
@@ -16,15 +15,8 @@ class Signin extends Component {
     handleSubmit = e => {
         e.preventDefault();
         // console.log(this.state);
-        axios
-            .post('/api/v1.0/users/signin', this.state)
-            .then(response => {
-                // console.log(response);
-                const token = response.data.token;
-                localStorage.setItem('jwtToken', token);
-                this.props.history.push('/students');
-            })
-            .catch(error => console.log(error));
+        console.log(this.state);
+        this.props.loginUser(this.state, this.props.history);
     };
     render() {
         return (

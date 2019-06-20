@@ -4,6 +4,7 @@ const User = require('../models/User');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const validateSigninInput = require('../validation/signin-validation');
 
 userRoute.get('/', (req, res) => {
     res.send('Welcome user');
@@ -41,7 +42,10 @@ userRoute.post('/signup', (req, res) => {
 });
 
 userRoute.post('/signin', (req, res) => {
-    const errors = {};
+    const { errors, isValid } = validateSigninInput(req.body);
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
     const { email, password } = req.body;
     User.findOne({ email }, (err, user) => {
         if (!user) {
