@@ -6,6 +6,8 @@ const setAuthHeader = token => {
     if (token) {
         axios.defaults.headers.common['Authorization'] = token;
     } else {
-        axios.defaults.headers.common['Authorization'];
+        delete axios.defaults.headers.common['Authorization'];
     }
 };
+
+export default setAuthHeader;

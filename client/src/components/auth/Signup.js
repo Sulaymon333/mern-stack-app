@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 class Signup extends Component {
     state = {
@@ -30,8 +30,8 @@ class Signup extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                    <label for="name">First Name</label>
+                <div className="form-group">
+                    <label htmlFor="name">First Name</label>
                     <input
                         type="text"
                         name="firstName"
@@ -41,8 +41,8 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
+                <div className="form-group">
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         name="username"
@@ -52,8 +52,8 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
@@ -63,9 +63,8 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         name="password"
@@ -75,8 +74,8 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <div class="form-group">
-                    <label for="password2">Confirm Password</label>
+                <div className="form-group">
+                    <label htmlFor="password2">Confirm Password</label>
                     <input
                         type="password"
                         name="password2"
@@ -86,9 +85,12 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                <button class="btn btn-primary" type="submit">
+                <button className="btn btn-primary" type="submit">
                     Sign Up
-                </button>
+                </button>{' '}
+                <NavLink to="/signin" className="btn btn-secondary">
+                    Sign In
+                </NavLink>
             </form>
         );
     }

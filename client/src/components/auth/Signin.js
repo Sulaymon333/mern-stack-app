@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 class Signin extends Component {
     state = {
@@ -15,10 +15,13 @@ class Signin extends Component {
     };
     handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
         axios
             .post('/api/v1.0/users/signin', this.state)
             .then(response => {
+                // console.log(response);
+                const token = response.data.token;
+                localStorage.setItem('jwtToken', token);
                 this.props.history.push('/students');
             })
             .catch(error => console.log(error));
@@ -26,32 +29,34 @@ class Signin extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                    <label for="email">Email</label>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Email"
                         value={this.state.email}
                         onChange={this.handleChange}
                     />
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         name="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Password"
                         value={this.state.password}
                         onChange={this.handleChange}
                     />
                 </div>
-
-                <button class="btn btn-primary" type="submit">
+                <button className="btn btn-primary" type="submit">
                     Sign In
-                </button>
+                </button>{' '}
+                <NavLink to="/signup" className="btn btn-secondary">
+                    Sign Up
+                </NavLink>
             </form>
         );
     }
